@@ -13,15 +13,9 @@ current data (today) and one for the previous day (yesterday)
 import requests
 import pandas as pd
 
-#NRCproxies = { 
-#        'http': 'http://148.184.186.51:80',
-#        'https': 'http://148.184.186.51:80',
-#}
-
-
 regwebAddress = 'https://www.worldometers.info/coronavirus/country/us/'
 
-res = requests.get(regwebAddress,proxies=NRCproxies, verify=False)
+res = requests.get(regwebAddress)
 res.raise_for_status()
 df_list=pd.read_html(res.text)
 table = df_list[0]
