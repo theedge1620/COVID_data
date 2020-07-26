@@ -13,10 +13,10 @@ current data (today) and one for the previous day (yesterday)
 import requests
 import pandas as pd
 
-NRCproxies = { 
-        'http': 'http://148.184.186.51:80',
-        'https': 'http://148.184.186.51:80',
-}
+#NRCproxies = { 
+#        'http': 'http://148.184.186.51:80',
+#        'https': 'http://148.184.186.51:80',
+#}
 
 
 regwebAddress = 'https://www.worldometers.info/coronavirus/country/us/'
