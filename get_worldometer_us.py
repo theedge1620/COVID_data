@@ -21,4 +21,14 @@ df_list=pd.read_html(res.text)
 table = df_list[0]
 table2 = df_list[1]
 
-print('Deaths today:  ' + str(table.NewDeaths[0]) + '.  Deaths yesterday:  ' + str(table2.NewDeaths[0]))
+print('Deaths today:  ' + str(table.NewDeaths[0]) + '   Deaths yesterday:  ' + str(table2.NewDeaths[0]))
+
+# print yesterday's results:
+sorted_df = table2.sort_values(by='NewDeaths', ascending=False)
+sorted_df.reset_index(inplace=True)
+print('Top 15 States by New Deaths Yesterday')
+print('Rank  New Deaths  State')
+for i in range(2,17):
+    print('Rank ' + str(i-1) + ':  ' + str(sorted_df.NewDeaths[i]) + '  ' + sorted_df.USAState[i])
+
+
