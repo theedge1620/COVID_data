@@ -21,3 +21,4 @@ df_list=pd.read_html(res.text)
 table = df_list[0]
 table2 = df_list[1]
 
+print('Deaths today:  ' + str(table.NewDeaths[0]) + '.  Deaths yesterday:  ' + str(table2.NewDeaths[0]))
