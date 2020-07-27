@@ -1,3 +1,4 @@
+
 #! python3
 # -*- coding: utf-8 -*-
 """
@@ -26,8 +27,13 @@ print('Deaths today:  ' + str(table.NewDeaths[0]) + '   Deaths yesterday:  ' + s
 # print yesterday's results:
 sorted_df = table2.sort_values(by='NewDeaths', ascending=False)
 sorted_df.reset_index(inplace=True)
+sorted_today=table.sort_values(by='NewDeaths', ascending=False)
+sorted_today.reset_index(inplace=True)
 print('Top 15 States by New Deaths Yesterday')
 print('Rank  New Deaths  State')
+print('Today')
+for i in range(2,7):
+    print('Rank ' + str(i-1) + ':  ' + str(sorted_today.NewDeaths[i]) + '  ' + sorted_today.USAState[i])
 for i in range(2,17):
     print('Rank ' + str(i-1) + ':  ' + str(sorted_df.NewDeaths[i]) + '  ' + sorted_df.USAState[i])
 
