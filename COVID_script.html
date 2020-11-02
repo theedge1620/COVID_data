@@ -13086,7 +13086,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import pandas and read in latest US confirmed and death time history data:</span>
@@ -13094,6 +13094,10 @@ div#notebook {
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">covid_US_confirmed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv&quot;</span><span class="p">)</span>
 <span class="n">covid_US_deaths</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># drop all but the last two weeks of data:</span>
+<span class="n">covid_US_confirmed</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">covid_US_confirmed</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">11</span><span class="p">:</span><span class="o">-</span><span class="mi">14</span><span class="p">],</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">covid_US_deaths</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">covid_US_deaths</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">11</span><span class="p">:</span><span class="o">-</span><span class="mi">14</span><span class="p">],</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13111,7 +13115,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_cases_US_daily</span> <span class="o">=</span> <span class="n">covid_US_confirmed</span><span class="p">[</span><span class="n">covid_US_confirmed</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span><span class="o">-</span><span class="n">covid_US_confirmed</span><span class="p">[</span><span class="n">covid_US_confirmed</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]]</span>
@@ -13127,7 +13131,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Print totals as a check:</span>
@@ -13166,7 +13170,7 @@ Total new cases in US in last 7 days  :  5762
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#  Append the new data to the dataframes for confirmed cases and deaths:</span>
@@ -13183,7 +13187,7 @@ Total new cases in US in last 7 days  :  5762
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Write the new files to a .csv file that has the calculated fields as the last columns:</span>
