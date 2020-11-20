@@ -19,8 +19,8 @@ covid_US_confirmed = pd.read_csv("./COVID-19/csse_covid_19_data/csse_covid_19_ti
 covid_US_deaths = pd.read_csv("./COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv")
 
 # drop all but the last two weeks of data:
-covid_US_confirmed.drop(covid_US_confirmed.iloc[:, 11:-14], inplace = True, axis = 1)
-covid_US_deaths.drop(covid_US_deaths.iloc[:, 11:-14], inplace = True, axis = 1)
+covid_US_confirmed.drop(covid_US_confirmed.iloc[:, 11:-15], inplace = True, axis = 1)
+covid_US_deaths.drop(covid_US_deaths.iloc[:, 11:-15], inplace = True, axis = 1)
 
 
 # #### Calculate daily and weekly totals:
@@ -32,8 +32,10 @@ covid_US_deaths.drop(covid_US_deaths.iloc[:, 11:-14], inplace = True, axis = 1)
 
 new_cases_US_daily = covid_US_confirmed[covid_US_confirmed.columns[-1]]-covid_US_confirmed[covid_US_confirmed.columns[-2]]
 new_cases_US_weekly = covid_US_confirmed[covid_US_confirmed.columns[-1]]-covid_US_confirmed[covid_US_confirmed.columns[-8]]
+new_cases_US_biweekly = covid_US_confirmed[covid_US_confirmed.columns[-1]]-covid_US_confirmed[covid_US_confirmed.columns[-15]]
 new_deaths_US_daily = covid_US_deaths[covid_US_deaths.columns[-1]]-covid_US_deaths[covid_US_deaths.columns[-2]]
 new_deaths_US_weekly = covid_US_deaths[covid_US_deaths.columns[-1]]-covid_US_deaths[covid_US_deaths.columns[-8]]
+new_deaths_US_biweekly = covid_US_deaths[covid_US_deaths.columns[-1]]-covid_US_deaths[covid_US_deaths.columns[-15]]
 
 
 # In[3]:
@@ -53,8 +55,12 @@ print('Total new death in US in last 7 days  :  ' + str(new_deaths_US_weekly.sum
 #  Append the new data to the dataframes for confirmed cases and deaths:
 covid_US_confirmed['New Cases Daily']=new_cases_US_daily
 covid_US_confirmed['New Cases Weekly']=new_cases_US_weekly
+covid_US_confirmed['New Cases Biweekly']=new_cases_US_biweekly
+covid_US_confirmed['14 Day Average']=covid_US_confirmed['New Cases Biweekly'].div(14).round(0)
 covid_US_deaths['New Deaths Daily']=new_deaths_US_daily
 covid_US_deaths['New Deaths Weekly']=new_deaths_US_weekly
+covid_US_deaths['New Deaths Biweekly']=new_deaths_US_biweekly
+covid_US_deaths['14 Day Average']=covid_US_deaths['New Deaths Biweekly'].div(14).round(0)
 
 
 # In[5]:
